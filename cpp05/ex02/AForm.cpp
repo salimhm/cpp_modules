@@ -6,29 +6,28 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 09:19:02 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/06 10:14:42 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/06 21:24:35 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
 AForm::AForm()
 {
-    std::cout << "AForm default constructor called" << std::endl;
 }
-AForm::AForm(const std::string name, bool isSigned, int gradeToSign, int gradeToExecute):name(name), isSigned(isSigned), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
+AForm::AForm(const std::string name, int gradeToSign, int gradeToExecute) : name(name), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
 {
     std::cout << "AForm parameterized constructor called" << std::endl;
 }
 
-AForm::AForm(AForm& cpy)
+AForm::AForm(AForm &cpy)
 {
-    std::cout << "AForm copy constructor called" << std::endl;
     if (this != &cpy)
         *this = cpy;
 }
 
-AForm& AForm::operator=(AForm& cpy)
+AForm &AForm::operator=(AForm &cpy)
 {
     this->isSigned = cpy.isSigned;
     this->gradeToSign = cpy.gradeToSign;
@@ -38,10 +37,9 @@ AForm& AForm::operator=(AForm& cpy)
 
 AForm::~AForm()
 {
-    std::cout << "AForm destructor called" << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& COUT, AForm& obj)
+std::ostream &operator<<(std::ostream &COUT, AForm &obj)
 {
     COUT << "Name: " << obj.getName() << std::endl;
     COUT << "Is the Aform signed? " << obj.getIsSigned() << std::endl;
@@ -50,35 +48,40 @@ std::ostream& operator<<(std::ostream& COUT, AForm& obj)
     return COUT;
 }
 
-std::string AForm::getName()
+std::string AForm::getName() const
 {
     return this->name;
 }
 
-bool AForm::getIsSigned()
+bool AForm::getIsSigned() const
 {
     return this->isSigned;
 }
 
-int AForm::getGradeToSign()
+int AForm::getGradeToSign() const
 {
     return this->gradeToSign;
 }
 
-int AForm::getGradeToExecute()
+int AForm::getGradeToExecute() const
 {
     return this->gradeToExecute;
 }
 
-void AForm::beSigned(Bureaucrat& obj)
+void AForm::beSigned(Bureaucrat &obj)
 {
-    if (obj.getGrade() <= this->getGradeToSign())
-        this->isSigned = true;
-    else
-        throw GradeTooLowException();
+    try
+    {
+        if (obj.getGrade() <= this->getGradeToSign())
+            this->isSigned = true;
+        else
+            throw GradeTooLowException();
+    } catch (std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
 }
 
-void AForm::signAForm(Bureaucrat& obj)
+void AForm::signAForm(Bureaucrat &obj)
 {
     if (getIsSigned())
         std::cout << obj.getName() << " signed " << this->getName() << std::endl;

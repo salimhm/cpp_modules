@@ -6,27 +6,22 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:48:06 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/05 15:26:47 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/06 21:18:20 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm()
+ShrubberyCreationForm::ShrubberyCreationForm() : target("Default")
 {
-    std::cout << "ShrubberyCreationForm default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("ShrubberyCreationForm", 145, 137), target(target)
 {
-    std::cout << "ShrubberyCreationForm parameterized constructor called" << std::endl;
-    std::ofstream file(target + "_shrubbery");
-    plantTree(file);
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm &cpy)
 {
-    std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
     if (this != &cpy)
         *this = cpy;
 }
@@ -39,10 +34,9 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(ShrubberyCreationForm &c
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-    std::cout << "ShrubberyCreationForm destructor called" << std::endl;
 }
 
-void ShrubberyCreationForm::plantTree(std::ofstream &file)
+void ShrubberyCreationForm::plantTree(std::ofstream &file) const
 {
     file << "                                                        .\n";
     file << "                                              .         ;  \n";
@@ -72,4 +66,20 @@ void ShrubberyCreationForm::plantTree(std::ofstream &file)
     file << "                               ;%@@@@%::;.          \n";
     file << "                              ;%@@@@%%:;;;. \n";
     file << "                          ...;%@@@@@%%:;;;;,..    \n";
+}
+
+const std::string ShrubberyCreationForm::getTarget() const
+{
+    return this->target;
+}
+
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+{
+    if (this->getIsSigned() && executor.getGrade() < this->getGradeToSign())
+    {
+        std::ofstream file(this->getTarget() + "_shrubbery");
+        plantTree(file);
+    }
+    else
+        throw FormNotQualified();
 }

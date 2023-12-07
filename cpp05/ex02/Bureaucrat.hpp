@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:32:21 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/04 17:16:03 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:57:17 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <iostream>
 #include <exception>
+#include "AForm.hpp"
+
+class AForm;
 
 class GradeTooHighException: public std::exception
 {
@@ -48,10 +51,12 @@ class Bureaucrat
         Bureaucrat(Bureaucrat& cpy);
         Bureaucrat& operator=(Bureaucrat& cpy);
 
-        int getGrade();
+        int getGrade() const;
         std::string getName();
         void increment();
         void decrement();
+
+        void executeForm(AForm const& form);
 };
 
 std::ostream& operator<<(std::ostream& COUT, Bureaucrat& obj);

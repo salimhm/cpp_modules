@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 09:58:58 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/06 10:20:40 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/06 21:40:10 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,10 @@
 
 RobotomyRequestForm::RobotomyRequestForm()
 {
-    std::cout << "RobotomyRequestForm default constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string target): AForm("RobotomyRequestForm", 25, 5), target(target)
 {
-    std::cout << "RobotomyRequestForm parameterized constructor called" << std::endl;
-    if (this->getGradeToSign() <= 72 && this->getGradeToExecute() <= 45)
-    {
-        std::cout << "Some drilling noises! lol" << std::endl;
-        std::cout << target << " has been robotomized 50% of the time" << std::endl;
-    }
-    else
-        std::cout << "Robotmy failed :'(" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm& cpy)
@@ -43,5 +34,17 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(RobotomyRequestForm& cpy)
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-    std::cout << "RobotomyRequestForm destructor called" << std::endl;
+}
+
+const std::string RobotomyRequestForm::getTarget() const
+{
+    return this->target;
+}
+
+void RobotomyRequestForm::execute(Bureaucrat const& executor) const
+{
+    if (this->getIsSigned() && executor.getGrade() < this->getGradeToSign())
+        std::cout << this->getTarget() << " has been robotomized successfully 50% of the time." << std::endl;
+    else
+        std::cout << "Robotomy has failed :'(" << std::endl;
 }
