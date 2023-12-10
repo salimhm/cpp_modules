@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:20:16 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:38:06 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/10 23:55:52 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,9 @@ Form *Intern::makeForm(std::string name, std::string target)
         std::cout << e.what() << std::endl;
     }
     return form;
+}
+
+const char* UnknownType::what() const throw()
+{
+    return "Unknown type!";
 }

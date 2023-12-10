@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:31:42 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/10 23:50:35 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/10 23:56:22 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,7 @@
 
 void main1()
 {
-    // Intern a
-
-    // Form* test = a.makeform()
-    // b.executeForm(*test);
     Bureaucrat xd("xd", 1);
-    // xd.executeForm();
-    // RobotomyRequestForm lol("Home");
-    // lol.beSigned(xd);
-    // xd.executeForm(lol);
-    // Form *xd;
-    // RobotomyRequestForm lol("Home");
     Intern someRandomIntern;
     Form *rrf1;
     Form *rrf2;

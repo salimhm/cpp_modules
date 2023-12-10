@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:18:47 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/09 19:38:03 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/10 23:55:32 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,25 @@
 
 class Intern
 {
-    public:
-        Intern();
-        Intern(Intern& cpy);
-        Intern& operator=(Intern& cpy);
-        ~Intern();
+public:
+    Intern();
+    Intern(Intern &cpy);
+    Intern &operator=(Intern &cpy);
+    ~Intern();
 
-        Form* makeForm(std::string formName, std::string formTarget);
+    Form *makeForm(std::string formName, std::string formTarget);
 
-        Form* shrubbery(std::string target);
-        Form* presidential(std::string target);
-        Form* robotomy(std::string target);
+    Form *shrubbery(std::string target);
+    Form *presidential(std::string target);
+    Form *robotomy(std::string target);
 
-        Form* findType(std::string form, std::string target);
+    Form *findType(std::string form, std::string target);
 };
 
-class UnknownType: public std::exception
+class UnknownType : public std::exception
 {
-    const char *what() const throw()
-    {
-        return "Unknown type!";
-    }
+public:
+    const char *what() const throw();
 };
 
 #endif
