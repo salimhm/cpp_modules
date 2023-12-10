@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:32:21 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/04 17:16:03 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/10 22:37:56 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,45 +15,43 @@
 
 #include <iostream>
 #include <exception>
+#include "Form.hpp"
 
-class GradeTooHighException: public std::exception
+class Form;
+
+class GradeTooHighException : public std::exception
 {
-    // public:
-        const char *what() const throw()
-        {
-            return "Grade Too High!";
-        }
-    
+public:
+    const char *what() const throw();
 };
 
-class GradeTooLowException: public std::exception
+class GradeTooLowException : public std::exception
 {
-    // public:
-        const char *what() const throw()
-        {
-            return "Grade Too Low!";
-        }
+public:
+    const char *what() const throw();
 };
 
 class Bureaucrat
 {
-    private:
-        std::string const name;
-        int grade;
+private:
+    std::string const name;
+    int grade;
 
-    public:
-        Bureaucrat();
-        Bureaucrat(std::string const name, int grade);
-        virtual ~Bureaucrat();
-        Bureaucrat(Bureaucrat& cpy);
-        Bureaucrat& operator=(Bureaucrat& cpy);
+public:
+    Bureaucrat();
+    Bureaucrat(std::string const name, int grade);
+    ~Bureaucrat();
+    Bureaucrat(const Bureaucrat &cpy);
+    Bureaucrat &operator=(const Bureaucrat &cpy);
 
-        int getGrade();
-        std::string getName();
-        void increment();
-        void decrement();
+    int getGrade() const;
+    std::string getName() const;
+    void increment();
+    void decrement();
+
+    void signForm(Form &form);
 };
 
-std::ostream& operator<<(std::ostream& COUT, Bureaucrat& obj);
+std::ostream &operator<<(std::ostream &COUT, Bureaucrat &obj);
 
 #endif

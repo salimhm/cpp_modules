@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:28:07 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/05 13:12:43 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/10 22:53:57 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,29 @@
 #include <exception>
 #include "Bureaucrat.hpp"
 
-class Form: public Bureaucrat
+class Bureaucrat;
+
+class Form
 {
     private:
         const std::string name;
         bool isSigned;
-        int gradeToSign;
-        int gradeToExecute;       
+        const int gradeToSign;
+        const int gradeToExecute;
 
     public:
         Form();
         Form(const std::string name, bool isSigned, int gradeToSign, int gradeToExecute);
-        Form(Form& cpy);
-        Form& operator=(Form& cpy);
+        Form(const Form& cpy);
+        Form& operator=(const Form& cpy);
         ~Form();
     
-        std::string getName();
-        bool getIsSigned();
-        int getGradeToSign();
-        int getGradeToExecute();
+        std::string getName() const;
+        bool getIsSigned() const;
+        int getGradeToSign() const;
+        int getGradeToExecute() const;
 
         void beSigned(Bureaucrat& obj);
-        void signForm(Bureaucrat& obj);
 };
 
 std::ostream& COUT(std::ostream& COUT, Form& obj);

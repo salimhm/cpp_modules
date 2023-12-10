@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/26 21:31:42 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/10 17:28:58 by shmimi           ###   ########.fr       */
+/*   Created: 2023/12/09 20:04:58 by shmimi            #+#    #+#             */
+/*   Updated: 2023/12/09 20:06:11 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#ifndef SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
 
-int main()
+#include <iostream>
+
+class ScalarConverter
 {
-    try
-    {
-        Bureaucrat lol;
-        lol.decrement();
-        // std::cout << lol->getName() << "|" << lol->getGrade() << std::endl;
-        std::cout << lol << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cout << e.what() << '\n';
-    }
-    return 0;
-}
+    
+};
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:28:07 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/09 16:14:04 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/10 23:05:09 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,37 @@ class Bureaucrat;
 
 class AForm
 {
-    private:
-        const std::string name;
-        bool isSigned;
-        int gradeToSign;
-        int gradeToExecute;       
+private:
+    const std::string name;
+    bool isSigned;
+    int gradeToSign;
+    int gradeToExecute;
 
-    public:
-        AForm();
-        AForm(const std::string name, int gradeToSign, int gradeToExecute);
-        AForm(AForm& cpy);
-        AForm& operator=(AForm& cpy);
-        ~AForm();
-    
-        std::string getName() const;
-        bool getIsSigned() const;
-        int getGradeToSign() const;
-        int getGradeToExecute() const;
+public:
+    AForm();
+    AForm(const std::string name, int gradeToSign, int gradeToExecute);
+    AForm(const AForm &cpy);
+    AForm &operator=(const AForm &cpy);
+    virtual ~AForm();
 
-        void beSigned(Bureaucrat& obj);
-        void signAForm(Bureaucrat& obj);
+    std::string getName() const;
+    bool getIsSigned() const;
+    int getGradeToSign() const;
+    int getGradeToExecute() const;
 
-        virtual void execute(Bureaucrat const& executor) const = 0;
+    void beSigned(Bureaucrat &obj);
+    void signAForm(Bureaucrat &obj);
+
+    virtual void execute(Bureaucrat const &executor) const = 0;
 };
 
-class FormNotQualified: public std::exception
+class FormNotQualified : public std::exception
 {
-    const char *what() const throw()
-    {
-        return "Unable to sign the form";
-    }
+public:
+    const char *what() const throw();
 };
 
-std::ostream& COUT(std::ostream& COUT, AForm& obj);
+std::ostream &COUT(std::ostream &COUT, AForm &obj);
 
 typedef AForm Form;
 
