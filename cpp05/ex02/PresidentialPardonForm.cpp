@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 10:28:02 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/06 21:35:34 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:34:37 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ const std::string PresidentialPardonForm::getTarget() const
 
 void PresidentialPardonForm::execute(Bureaucrat const& executor) const
 {
-    if (this->getIsSigned() && executor.getGrade() < this->getGradeToSign())
+    if (this->getIsSigned() && executor.getGrade() <= this->getGradeToSign())
     {
         std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
     }

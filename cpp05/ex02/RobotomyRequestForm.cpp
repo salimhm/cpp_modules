@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 09:58:58 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/06 21:40:10 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:41:56 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ const std::string RobotomyRequestForm::getTarget() const
 
 void RobotomyRequestForm::execute(Bureaucrat const& executor) const
 {
-    if (this->getIsSigned() && executor.getGrade() < this->getGradeToSign())
+    if (this->getIsSigned() && executor.getGrade() <= this->getGradeToSign())
         std::cout << this->getTarget() << " has been robotomized successfully 50% of the time." << std::endl;
     else
-        std::cout << "Robotomy has failed :'(" << std::endl;
+        throw FormNotQualified();
 }

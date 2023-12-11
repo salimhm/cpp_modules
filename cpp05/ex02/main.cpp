@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:31:42 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/06 21:48:49 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:42:10 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 int main()
 {
-    Bureaucrat xd("xd", 150);
+    Bureaucrat xd("xd", 1);
     RobotomyRequestForm lol("Home");
-    lol.beSigned(xd);
+    // lol.beSigned(xd);
     xd.executeForm(lol);
 }

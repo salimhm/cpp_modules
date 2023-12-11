@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 12:48:06 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/06 21:18:20 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/11 16:34:47 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ const std::string ShrubberyCreationForm::getTarget() const
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    if (this->getIsSigned() && executor.getGrade() < this->getGradeToSign())
+    if (this->getIsSigned() && executor.getGrade() <= this->getGradeToSign())
     {
         std::ofstream file(this->getTarget() + "_shrubbery");
         plantTree(file);

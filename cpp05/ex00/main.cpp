@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:31:42 by shmimi            #+#    #+#             */
-/*   Updated: 2023/12/10 17:28:58 by shmimi           ###   ########.fr       */
+/*   Updated: 2023/12/11 15:31:26 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
     }
     catch (const std::exception &e)
     {
-        std::cout << e.what() << '\n';
+        std::cout << e.what() << std::endl;
     }
     return 0;
 }
