@@ -6,12 +6,16 @@ SRC				=	main.cpp
 
 OBJ				=	$(SRC:.cpp=.o)
 
-NAME			=	templates
+NAME			=	MutantStack
 
 all:			$(NAME)
 
+%.o: %.cpp *.hpp
+				$(CC) $(CPPFLAGS) -c $< -o $@
+
 $(NAME):		$(OBJ)
 				$(CC) $(OBJ) $(CPPFLAGS) -o $(NAME)
+
 
 clean:
 				rm -f $(OBJ)

@@ -1,6 +1,6 @@
 CC				=	c++
 
-CPPFLAGS		=	-Wall -Wextra -Werror
+CPPFLAGS		=	-Wall -Wextra -Werror -std=c++98
 
 SRC				=	main.cpp
 
@@ -10,8 +10,12 @@ NAME			=	easyFind
 
 all:			$(NAME)
 
+%.o: %.cpp *.hpp
+				$(CC) $(CPPFLAGS) -c $< -o $@
+
 $(NAME):		$(OBJ)
 				$(CC) $(OBJ) $(CPPFLAGS) -o $(NAME)
+
 
 clean:
 				rm -f $(OBJ)

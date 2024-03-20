@@ -66,6 +66,10 @@
         "vector": "cpp",
         "fcntl.h": "c",
         "easyfind.hpp": "c",
-        "*.tpp": "cpp"
+        "*.tpp": "cpp",
+        "__functional_base_03": "cpp",
+        "numeric": "cpp",
+        "filesystem": "cpp",
+        "list": "cpp"
     }
 }

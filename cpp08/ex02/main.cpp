@@ -5,23 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 22:12:02 by shmimi            #+#    #+#             */
-/*   Updated: 2024/03/15 16:47:40 by shmimi           ###   ########.fr       */
+/*   Created: 2024/03/18 14:16:39 by shmimi            #+#    #+#             */
+/*   Updated: 2024/03/19 23:58:06 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "easyFind.hpp"
+#include "MutantStack.hpp"
 
 int main()
 {
-    int array[4] = {1, 4, 6, 89};
-    std::vector<int> vec;
+    MutantStack<int> lol;
+   lol.push(3);
+lol.push(5);
+lol.push(737);
+    std::cout << lol.size() << std::endl;
 
-    for (size_t i = 0; i < sizeof(array) / sizeof(int); i++)
-    {
-        vec.push_back(array[i]);
-    }
+    std::stack<int, std::deque<int> > xd;
+    xd.push(1);
+    std::cout << xd.top() << std::endl;
+    
+    MutantStack<int>::iterator it = lol.begin();
+    MutantStack<int>::iterator ite = lol.end();
+    std::cout << "Beggining => " << *it << std::endl;
+    std::cout << "Ending => " << *ite << std::endl;
+(void)it;
+(void)ite;
 
-    easyFind(vec, 89);
-    return 0;
+
+    // lol.
+    // std::
 }

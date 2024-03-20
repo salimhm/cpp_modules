@@ -2,16 +2,20 @@ CC				=	c++
 
 CPPFLAGS		=	-Wall -Wextra -Werror -std=c++98
 
-SRC				=	main.cpp
+SRC				=	main.cpp Span.cpp
 
 OBJ				=	$(SRC:.cpp=.o)
 
-NAME			=	templates
+NAME			=	span
 
 all:			$(NAME)
 
+%.o: %.cpp *.hpp
+				$(CC) $(CPPFLAGS) -c $< -o $@
+
 $(NAME):		$(OBJ)
 				$(CC) $(OBJ) $(CPPFLAGS) -o $(NAME)
+
 
 clean:
 				rm -f $(OBJ)
