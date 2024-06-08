@@ -6,21 +6,20 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 20:41:24 by shmimi            #+#    #+#             */
-/*   Updated: 2024/03/10 02:35:59 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/03/20 12:45:41 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 
-int add(int n)
+template <typename T>
+T add(T n)
 {
-    return n + 1;
+    return n * 2;
 }
 
 int main()
 {
     int arr[] = {1, 2, 3};
-    iter(arr, 3, add);
-    for (int i = 0; i < 3; i++)
-        std::cout << arr[i] << std::endl;
+    iter<int>(arr, 3, add<int>);
 }

@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 02:38:06 by shmimi            #+#    #+#             */
-/*   Updated: 2024/03/10 08:20:13 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/03/20 13:43:06 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ template <typename T>
 class Array
 {
 private:
-    T *elements;
+    T* elements;
     size_t len;
 
 public:
@@ -38,11 +38,14 @@ public:
 
     Array(const Array<T> &cpy) : len(cpy.len)
     {
-        if (this != &cpy)
-            *this = cpy;
+        this->elements = new T[this->len];
+        for (size_t i = 0; i < len; i++)
+        {
+            this->elements[i] = cpy.elements[i];
+        }
     }
 
-    Array &operator=(const Array<T> &cpy)
+    Array& operator=(const Array<T> &cpy)
     {
         if (this != &cpy)
         {
@@ -57,7 +60,13 @@ public:
         return *this;
     }
 
-    T &operator[](size_t index)
+    ~Array()
+    {
+        delete[] elements;
+        elements = NULL;
+    }
+
+    T& operator[](size_t index)
     {
         if (index >= 0 && index < len)
         {
@@ -72,11 +81,5 @@ public:
     size_t size() const
     {
         return len;
-    }
-
-    ~Array()
-    {
-        delete[] elements;
-        elements = NULL;
     }
 };

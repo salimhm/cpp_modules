@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 22:12:02 by shmimi            #+#    #+#             */
-/*   Updated: 2024/03/15 16:47:40 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/03/21 21:07:49 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int main()
         vec.push_back(array[i]);
     }
 
-    easyFind(vec, 89);
+    easyFind(vec, 6);
     return 0;
 }

@@ -1,15 +1,12 @@
 CC				=	c++
 
-CPPFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CPPFLAGS		=	-Wall -Wextra -Werror
 
-SRC				=	main.cpp
+SRC				=	main.cpp BitcoinExchange.cpp
 
 OBJ				=	$(SRC:.cpp=.o)
 
-NAME			=	templates
-
-%.o:	%.cpp *.hpp
-		$(CC) $(CPPFLAGS) -c $< -o $@
+NAME			=	btc
 
 all:			$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:54:58 by shmimi            #+#    #+#             */
-/*   Updated: 2024/03/17 20:00:49 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/03/21 21:23:18 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,19 @@ int Span::shortestSpan()
     if (this->numbers.size() <= 1)
         throw std::exception();
     std::vector<int> copy(this->numbers.size());
+    for(size_t i = 0; i < numbers.size(); i++)
+    {
+        // std::cout << "Numbers " << numbers[i] << std::endl;
+    }
     std::adjacent_difference(this->numbers.begin(), this->numbers.end(), copy.begin());
+    for(size_t i = 0; i < copy.size(); i++)
+    {
+        copy[i] = std::abs(copy[i]);
+        // std::cout << "Copy " << copy[i] << std::endl;
+    }
     std::vector<int>::iterator it;
     std::sort(copy.begin(), copy.end());
-    return copy[0];
+    return std::abs(copy[0]);
 }
 
 int Span::longestSpan()

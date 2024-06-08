@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:51:20 by shmimi            #+#    #+#             */
-/*   Updated: 2024/03/18 14:15:17 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/03/21 21:25:58 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int main()
         std::cout << *it << std::endl;
     }
 
-    // std::cout << "Longest span is: " << sp.longestSpan() << std::endl;
-    // std::cout << "Shortest span is: " << sp.shortestSpan() << std::endl;
+    std::cout << "Longest span is: " << sp.longestSpan() << std::endl;
+    std::cout << "Shortest span is: " << sp.shortestSpan() << std::endl;
 }

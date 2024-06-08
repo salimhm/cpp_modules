@@ -8,6 +8,9 @@ OBJ				=	$(SRC:.cpp=.o)
 
 NAME			=	templates
 
+%.o:	%.cpp *.hpp
+		$(CC) $(CPPFLAGS) -c $< -o $@
+
 all:			$(NAME)
 
 $(NAME):		$(OBJ)

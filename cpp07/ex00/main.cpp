@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 18:33:17 by shmimi            #+#    #+#             */
-/*   Updated: 2024/03/08 20:56:44 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/03/20 11:40:58 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int main()
 {
-    int a = 2;
-    int b = 3;
-    ::swap(a, b);
+    const int a = 2;
+    const int b = 3;
+    // ::swap(a, b);
     std::cout << "a = " << a << ", b = " << b << std::endl;
     std::cout << "min( a, b ) = " << ::min(a, b) << std::endl;
     std::cout << "max( a, b ) = " << ::max(a, b) << std::endl;

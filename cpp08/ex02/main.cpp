@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 14:16:39 by shmimi            #+#    #+#             */
-/*   Updated: 2024/03/19 23:58:06 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/03/21 21:34:01 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ lol.push(737);
     std::cout << "Ending => " << *ite << std::endl;
 (void)it;
 (void)ite;
+
+std::stack<int, std::vector<int> > test;
 
 
     // lol.
