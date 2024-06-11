@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:28:32 by shmimi            #+#    #+#             */
-/*   Updated: 2024/06/07 16:25:07 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/06/11 00:26:39 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,14 @@ std::string trim(const std::string &str)
         }
     }
     return copy;
+}
+
+void BitcoinExchange::setBtcData(const std::string &date, double value)
+{
+    this->btcData.insert(std::pair<std::string, double>(date, value));
+}
+
+std::multimap<std::string, double> BitcoinExchange::getBtcData() const
+{
+    return this->btcData;
 }

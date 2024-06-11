@@ -6,12 +6,16 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:20:14 by shmimi            #+#    #+#             */
-/*   Updated: 2024/06/07 21:08:07 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/06/11 01:52:59 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include <fstream>
+
+#define NEGATIVE 1
+#define TOO_BIG 2
+#define BAD_FORMAT 3
 
 int parseDay(const std::string &day)
 {
@@ -48,7 +52,11 @@ int parseValue(const std::string &value)
     if (!value.empty())
     {
         int valueInt = std::atoi(value.c_str());
-        std::cout << "Value: " << valueInt << std::endl;
+        if (valueInt < 0)
+            return NEGATIVE;
+        else if (valueInt > 1000000)
+            return TOO_BIG;
+        // std::cout << "Value: " << valueInt << std::endl;
     }
     return 0;
 }
@@ -71,9 +79,37 @@ int getKey(std::string &date)
     std::string month = date.substr(delimiterYear + 1, delimiterMonth - delimiterYear - 1);
     std::string day = date.substr(delimiterMonth + 1);
 
-    std::cout << year << "|" << month << "|" << day << std::endl;
+    // std::cout << year << "|" << month << "|" << day << std::endl;
     if (parseYear(year) || parseMonth(month) || parseDay(day))
+        return BAD_FORMAT;
+    return 0;
+}
+
+int checkCsvData(const std::multimap<std::string, double>& btcData)
+{
+    std::ifstream file("data.csv");
+    if (!file.is_open())
+    {
+        std::cerr << "Error: Couldn't open the file" << std::endl;
         return 1;
+    }
+
+    std::string line;
+    std::string key;
+    std::string value;
+    (void)btcData;
+    while(getline(file, line))
+    {
+        size_t separator = line.find(",");
+        key = line.substr(0, separator);
+        value = line.substr(separator + 1);
+        for (std::multimap<std::string, double>::const_iterator it = btcData.begin(); it != btcData.end(); it++)
+        {
+            if (it->first == key)
+                std::cout << it->first << "|" << it->second << std::endl;
+        }
+        // std::cout << key << "|" << value << std::endl;
+    }
     return 0;
 }
 
@@ -86,15 +122,12 @@ int parseInput(const std::string &filename)
         return 1;
     }
     std::string line;
-
-    // std::string year;
-    // std::string month;
-    // std::string day;
-
     std::string key;
     std::string value;
 
     size_t delimiter;
+
+    BitcoinExchange btc;
 
     while (getline(file, line))
     {
@@ -105,13 +138,30 @@ int parseInput(const std::string &filename)
         {
             key = line.substr(0, delimiter);
             value = line.substr(delimiter + 3);
-            // if (getKey(key))
-            // std::cerr << "Error: bad date format => " << value << std::endl;
-            parseValue(value);
+            if (getKey(key) == BAD_FORMAT)
+                std::cerr << "Error: bad date format => " << line << std::endl;
+            else if (parseValue(value) == NEGATIVE)
+                std::cerr << "Error: negative value." << std::endl;
+            else if (parseValue(value) == TOO_BIG)
+                std::cerr << "Error: too large a value." << std::endl;
+            else
+            {
+                btc.setBtcData(key, std::stod(value));
+            }
         }
     }
+    std::multimap<std::string, double> btcData = btc.getBtcData();
+    // std::cout << "*************\n";
+    // for (std::multimap<std::string, double>::iterator it = btcData.begin(); it != btcData.end(); it++)
+    // {
+    //     std::cout << it->first << " => " << it->second << std::endl;
+    // }
+    if (checkCsvData(btcData))
+        return 1;
+    file.close();
     return 0;
 }
+
 
 int main(int ac, char **av)
 {
