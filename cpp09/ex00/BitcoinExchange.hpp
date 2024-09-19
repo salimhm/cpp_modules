@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:20:55 by shmimi            #+#    #+#             */
-/*   Updated: 2024/06/11 00:24:28 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/09/12 22:21:29 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include <algorithm>
 
 class BitcoinExchange
 {
