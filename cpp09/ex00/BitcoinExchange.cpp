@@ -6,13 +6,13 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:28:32 by shmimi            #+#    #+#             */
-/*   Updated: 2024/09/19 23:12:10 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/09/20 01:55:48 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(): bitcoinPrices(0){}
+BitcoinExchange::BitcoinExchange(){}
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &cpy)
 {
@@ -23,7 +23,6 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &cpy)
 {
     if (this == &cpy)
         return *this;
-    bitcoinPrices = cpy.bitcoinPrices;
     return *this;
 }
 
@@ -79,7 +78,7 @@ void BitcoinExchange::setBtcData(const std::string &date, double value)
     this->btcData.insert(std::pair<std::string, double>(date, value));
 }
 
-std::multimap<std::string, double> BitcoinExchange::getBtcData() const
+std::map<std::string, double> BitcoinExchange::getBtcData()
 {
     return this->btcData;
 }

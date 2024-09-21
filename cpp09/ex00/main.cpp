@@ -6,7 +6,7 @@
 /*   By: shmimi <shmimi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:20:14 by shmimi            #+#    #+#             */
-/*   Updated: 2024/09/19 23:52:46 by shmimi           ###   ########.fr       */
+/*   Updated: 2024/09/20 01:55:25 by shmimi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ int getKey(std::string &date)
     return 0;
 }
 
-const std::multimap<std::string, double>::const_iterator find_closest_date(const std::string &date, const std::multimap<std::string, double> &btcData)
+std::map<std::string, double>::iterator find_closest_date(std::string &date, std::map<std::string, double> &btcData)
 {
-    std::multimap<std::string, double>::const_iterator lower = btcData.lower_bound(date);
+    std::map<std::string, double>::iterator lower = btcData.lower_bound(date);
 
     // std::cout << "Date: " << date << std::endl;
     if (lower != btcData.end() && lower->first == date) {
         // Exact match found
-        // std::cout << "Exact date found: " << lower->first << " | " << lower->second << std::endl;
+        std::cout << "Exact date found: " << lower->first << " | " << lower->second << std::endl;
         return lower;
     } 
     else if (lower != btcData.begin()) {
@@ -133,7 +133,7 @@ BitcoinExchange load_btc_data()
     return btc;
 }
 
-int checkCsvData(const std::multimap<std::string, double> &btcData)
+int checkCsvData(const std::map<std::string, double> &btcData)
 {
     (void)btcData;
     std::ifstream file("data.csv");
@@ -148,7 +148,7 @@ int checkCsvData(const std::multimap<std::string, double> &btcData)
     std::string value;
     
     getline(file, line); // Skip the first line
-    // for (std::multimap<std::string, double>::const_iterator it = btcData.begin(); it != btcData.end(); it++)
+    // for (std::map<std::string, double>::iterator it = btcData.begin(); it != btcData.end(); it++)
     // {
     //     while (getline(file, line))
     //     {
@@ -181,6 +181,7 @@ int parseInput(const std::string &filename)
     size_t delimiter;
     
     BitcoinExchange btc = load_btc_data();
+    std::map<std::string, double> btcData = btc.getBtcData();
     while (getline(file, line))
     {
         delimiter = line.find(" | ");
@@ -201,15 +202,16 @@ int parseInput(const std::string &filename)
             else
             {
                 value = trim(value);
-                const std::multimap<std::string, double>::const_iterator closest = find_closest_date(key, btc.getBtcData());
-                std::cout << key << " => " << value << " => " << std::stod(value) * closest->second << std::endl;
+                std::map<std::string, double>::iterator closest = find_closest_date(key, btcData);
+                // std::cout << key << " => " << value << " => " << std::stod(value) * closest->second << std::endl;
+                std::cout << closest->first << " => " << closest->second << std::endl;
                 // std::cout << "Key: " << key << " | Value: " << value << std::endl;
             }
         }
     }
-    std::multimap<std::string, double> btcData = btc.getBtcData();
+    // std::map<std::string, double> btcData = btc.getBtcData();
     // std::cout << "*************\n";
-    // for (std::multimap<std::string, double>::iterator it = btcData.begin(); it != btcData.end(); it++)
+    // for (std::map<std::string, double>::iterator it = btcData.begin(); it != btcData.end(); it++)
     // {
     //     if (it->first == "2012-01-11")
     //         std::cout << it->first << " => " << it->second << std::endl;

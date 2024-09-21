@@ -2,10 +2,10 @@
 #include <map>
 #include <string>
 
-std::multimap<std::string, double>::const_iterator find_closest_date(const std::string& date, const std::multimap<std::string, double>& btcData)
+std::multimap<std::string, double>::iterator find_closest_date(const std::string& date, const std::multimap<std::string, double>& btcData)
 {
     // Find the first date in the multimap that is not less than the given date
-    std::multimap<std::string, double>::const_iterator lower = btcData.lower_bound(date);
+    std::multimap<std::string, double>::iterator lower = btcData.lower_bound(date);
 
     if (lower != btcData.end() && lower->first == date) {
         // Exact match found
@@ -35,7 +35,7 @@ int main()
 
     // Example: finding closest date to input
     std::string inputDate = "2012-01-11";
-    std::multimap<std::string, double>::const_iterator lower = find_closest_date(inputDate, btcData);
+    std::multimap<std::string, double>::iterator lower = find_closest_date(inputDate, btcData);
     std::cout << lower->second << std::endl;
 
     return 0;
